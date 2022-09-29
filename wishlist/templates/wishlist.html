@@ -1,16 +1,21 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h5>Nama: </h5>
-<p>{{nama}}</p>
+<nav class="navbar" style="background-color: lightgoldenrodyellow;"> <!--buat warna background-->
+    <div class="container-fluid">
+      <span class="navbar-brand mb-0 h1">Cinthya Yosephine Depari</span>
+      <a class="btn btn-outline-success me-2" type="button" href="{% url 'wishlist:logout' %}">Log Out</a>
+    </div>
+  </nav>
 
-<table>
-    <tr>
-    <th>Nama Barang</th>
-    <th>Harga Barang</th>
-    <th>Deskripsi</th>
-    </tr>
-
+<table class = "table table-bordered w-auto" style="margin-left:auto; margin-right:auto; margin-top:25px;">  <!--ini untuk buat tabel sekaligus ngerapihinnya-->
+    <thead style="background-color: lightpink;"> <!--ini buat ngasih warna background-->
+        <tr>
+            <th>Nama Barang</th>
+            <th>Harga Barang</th>
+            <th>Deskripsi</th>
+            </tr>
+    </thead>
     {% comment %} Tambahkan data di bawah baris ini {% endcomment %}
     {% for barang in list_barang %}
         <tr>
@@ -22,6 +27,5 @@
 
 </table> 
     <h5>Sesi terakhir login: {{ last_login }}</h5>
-    <button><a href="{% url 'wishlist:logout' %}">Logout</a></button>
 
 {% endblock content %}
