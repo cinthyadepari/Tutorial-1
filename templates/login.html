@@ -5,14 +5,19 @@
 {% endblock meta %}
 
 {% block content %}
+<nav class="navbar" style="background-color: lightgoldenrodyellow;"> <!--buat warna background-->
+    <div class="container-fluid">
+      <span class="navbar-brand mb-0 h1">Cinthya Yosephine Depari</span>
+    </div>
+</nav>
 
-<div class = "login">
+<div class = "login" style="text-align:center ;">
 
     <h1>Login</h1>
 
     <form method="POST" action="">
         {% csrf_token %}
-        <table>
+        <table style="margin-left: auto;margin-right :auto">
             <tr>
                 <td>Username: </td>
                 <td><input type="text" name="username" placeholder="Username" class="form-control"></td>
@@ -22,12 +27,8 @@
                 <td>Password: </td>
                 <td><input type="password" name="password" placeholder="Password" class="form-control"></td>
             </tr>
-
-            <tr>
-                <td></td>
-                <td><input class="btn login_btn" type="submit" value="Login"></td>
-            </tr>
         </table>
+        <td><input class="btn btn-primary" type="submit" value="Login" style="margin-bottom:25px;"></td>
     </form>
 
     {% if messages %}
@@ -38,7 +39,7 @@
         </ul>
     {% endif %}     
         
-    Belum mempunyai akun? <a href="{% url 'wishlist:register' %}">Buat Akun</a>
+    Belum mempunyai akun? <a class="btn btn-outline-success me-2" type="button" href="{% url 'wishlist:register' %}">Buat Akun</a>
 
 </div>
 
