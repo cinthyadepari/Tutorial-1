@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<nav class="navbar" style="background-color: lightgoldenrodyellow;"> <!--buat warna background-->
+    <div class="container-fluid">
+      <span class="navbar-brand mb-0 h1">Cinthya Yosephine Depari</span>
+      <a class="btn btn-outline-success me-2" type="button" href="{% url 'wishlist:logout' %}">Log Out</a>
+    </div>
+  </nav>
+
+<table class = "table table-bordered w-auto" style="margin-left:auto; margin-right:auto; margin-top:25px;">  <!--ini untuk buat tabel sekaligus ngerapihinnya-->
+    <thead style="background-color: lightpink;"> <!--ini buat ngasih warna background-->
+        <tr>
+            <th>Nama Barang</th>
+            <th>Harga Barang</th>
+            <th>Deskripsi</th>
+            </tr>
+    </thead>
+    {% comment %} Tambahkan data di bawah baris ini {% endcomment %}
+    
+</table> 
+    <h5>Sesi terakhir login: {{ last_login }}</h5>
+<script>
+    function yaa(event){
+        event.prevenDefault()
+        $.post("/ajax/submit/"),
+            {
+                nama_barang : document.getElementById("nama_barang").value,
+                harga_barang : document.getElementById("harga_barang").value,
+                deskripsi: document.getElementById("deskripsi").value,
+            }
+        };
+        return false;
+    
+</script>
+<script type ="text/javascript">
+
+    function refresh() {
+        $.ajax({
+            type: "GET",
+            url: "/wishlist/json",
+            dataType:"json",
+            success: function(data){
+                datanya = data
+            }
+        });
+        return datanya;
+    }
+    function refresh2(){
+        var datanya = refresh();
+        var itemHtml = "<table> <tr> <th> Nama Barang</th>"
+        for (var i =0; i<datanya.length; i++){
+            var item = datanya[i].fields;
+            itemHtml += '<tr> <th>' + item.nama_barang+ '</th> <th>' + item.deskripsi + '</th> </tr>';
+        }
+        itemHtml += "</table>";
+        $('#lala').html(itemHtml);
+    }
+</script>
+{% endblock content %}
